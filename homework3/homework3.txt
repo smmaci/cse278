@@ -1,0 +1,114 @@
+/* Homework 3 for team "Team Expanding Dragon"  
+*  Samuel Mallamaci
+*  Joeseph Seiler
+*  Jessica Fielder
+*  CSE278 - Dr. Alomari
+*/
+
+2 - A Simple Function
+	2
+	246
+	6
+	8
+	10
+
+3 - Fix the Function
+	3.1
+		1) Move the void function to be before the main method in the code
+		2) Create a prototype before the main method: void printNum(int);
+
+	3.2
+		1)  (Preferable) Change the function arguments to match the arguments passed: 
+				void printNum(int number) { std::cout<<number; };
+		2)  Create global variable 'int number = 35;' so that the printNum() function can access
+			the variable.
+
+	3.3
+		Change the doubleNumber to accept arguments passed by reference instead of by value, and pass the number by reference in the main method:
+			void doubleNumber(int &num) { num = num * 2;}
+
+	3.4
+		Include a return statement in the difference function:
+			return diff;
+			- or -
+			return abs(x - y);
+
+	3.5
+		Either create a new function, still called sum, but include 3 arguments passed and return the sum of all three numbers
+		- or -
+		Change the function to accept an array of integers and its length as parameters, and return the sum of the array:
+			int sum(int arr[], int length){
+				int total = 0;
+				for(int i = 0; i < length; i++){
+					total += arr[i];
+				}
+				return total;
+			}
+
+	3.6
+		Change the type of yptr to an int* by declaring it as:
+			int *yptr = arr + ARRAY_LEN - 1;
+
+4 - Sums
+	4.1
+		int sum(int a, int b){
+			return a + b;
+		}
+
+		double sum(double a, double b){
+			return a + b;
+		}
+
+	4.2
+		Assuming that the function is only meant to find the sum of integers, by passing a decimal number in the second argument, the compiler will convert both arguments to double instead of double, because the comiler changes types to whichever is larger (in bytes).
+
+	4.3
+		int sum(int num1, int num2){
+			return num1 + num2;
+		}
+		int sum(int num1, int num2, int num3){
+			return num1 + num2 + num3;
+		}
+		int sum(int num1, int num2, int num3, int num4){
+			return num1 + num2 + num3 + num4;
+		}
+
+	4.4
+		int sum(int num1 = 0, int num2 = 0, int num3 = 0, int num4 = 0){
+			return num1 + num2 + num3 + num4;
+		}
+
+		An error occurs if both functions are in the same file, because the compiler does not know which one to use when passed 3 arguments because both will accept 3 arguments.
+
+	4.5
+		int sum(int arr[], int length){
+			int total = 0;
+			for(int i = 0; i < length; i++){
+				total += arr[i];
+			}
+			return total;
+		}
+	4.6
+		int sum(int arr[], int length){
+			if(length <= 1)
+				return arr[length - 1];
+			else{
+				return arr[0] + sum(arr + 1, length - 1);
+			}
+		}
+
+5 - Calculating Pi
+	double calculatePi(double throws){
+		srand(time(0));
+		double dartsIn = 0;
+		double pi;
+		for(int n = 0; n < throws; n++){
+			double dartX = (double)rand() / RAND_MAX;
+			double dartY = (double)rand() / RAND_MAX;
+			if(sqrt((dartX * dartX) + (dartY * dartY))<= 1)
+				dartsIn++;
+		}
+		pi = 4.0 * (dartsIn / throws);
+		return pi;
+	}
+		
